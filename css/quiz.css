@@ -1,0 +1,180 @@
+/* quiz.css */
+.quiz-body { background-color: #f0f8ff; }
+
+/* ヘッダーを固定 */
+.quiz-header {
+    position: sticky !important;
+    top: 0;
+    transform: none !important; /* index.htmlの消える機能を無効化 */
+}
+
+#quiz-app {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 0 #ccd;
+    min-height: 400px;
+}
+
+/* 小学生向けのワクワクするスタイル */
+.quiz-intro h2 { 
+    color: #0e61c1; 
+    text-align: center; 
+    font-family: "Mochiy Pop One", sans-serif;
+    font-weight: 400
+ }
+.quiz-intro ul {
+    padding-left: 20px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    list-style: none;
+ }
+
+.genre-badge { 
+    display: inline-block; 
+    padding: 2px 10px; 
+    border-radius: 10px; 
+    background: #ffcc00; 
+    font-size: 0.8em; 
+    margin-bottom: 5px; 
+}
+
+.timer-bar {
+    background: #eee;
+    height: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+#progress { 
+   height: 100%; 
+   background: linear-gradient(90deg, #e32626, #ffeb3b); 
+   width: 100%; 
+   transition: width 1s linear; 
+}
+
+.question-nav { 
+   display: flex; 
+   flex-wrap: wrap; 
+   gap: 5px; 
+   margin-bottom: 20px;
+ }
+
+.nav-dot { 
+   width: 30px; 
+   height: 30px; 
+   border-radius: 50%; 
+   border: 1px solid #ccc; 
+   background: #fff; 
+   cursor: pointer; 
+   display: flex; 
+   align-items: center; 
+   justify-content: center; 
+   font-size: 0.7em; 
+}
+
+.nav-dot.active { 
+   background: #4c7cb2; 
+   color: white; 
+   border-color: #4c7cb2; 
+}
+
+.nav-dot.answered { 
+  background: #e3f2fd; 
+  border-color: #4c7cb2; 
+}
+
+.quiz-tittle {
+  margin-top: 0;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #4c7cb2;
+    border-radius: 10px;
+    background: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.2s;
+}
+.option-btn:hover { 
+    background: #e3f2fd; 
+}
+
+.option-btn.selected { 
+   background: #4c7cb2; 
+   color: white; 
+}
+
+/* ボタンエリアのレイアウト調整 */
+.operation-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+/* 戻る・進むボタンの共通デザイン */
+.operation-btn button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-family: "Mochiy Pop One", sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #e0e0e0;
+    color: #666;
+    box-shadow: 0 4px 0 #bbb;
+    transition: all 0.2s;
+}
+
+/* 進む・結果ボタンの強調（青色） */
+.operation-btn button:not([disabled]):last-child {
+    background: #4c7cb2;
+    color: white;
+    box-shadow: 0 4px 0 #2c5c92;
+}
+
+.operation-btn button:active:not([disabled]) {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #bbb;
+}
+
+/* ユーザーの回答表示用スタイル追加 */
+.user-ans {
+    color: #666;
+    font-size: 0.9em;
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.score-screen { 
+   text-align: center; 
+}
+
+.score-circle { 
+   width: 150px; 
+   height: 150px; 
+   border-radius: 50%;
+   background: #ff4500; 
+   color: white; 
+   display: flex; 
+   flex-direction: column; 
+   align-items: center; 
+   justify-content: center;
+   margin: 20px auto; 
+   font-size: 2em; 
+   animation: celebrate 0.5s ease infinite alternate; 
+}
+
+.explanation-card { 
+   border-left: 5px solid #4c7cb2; 
+   background: #f9f9f9; 
+   padding: 10px;  
+   margin-top: 10px; 
+   text-align: left; 
+}
