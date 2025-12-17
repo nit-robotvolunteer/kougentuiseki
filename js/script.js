@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (allChecked) {
             // 全てチェックされた時
-            statusMessage.innerHTML = '✨ 🎊 ロボット<ruby>完成<rt>かんせい</rt></ruby>おめでとう！ 🎊 ✨';
+            statusMessage.innerHTML = 'ロボット<ruby>完成<rt>かんせい</rt></ruby>おめでとう！';
             statusMessage.classList.add('completed-text');
         } else {
             // 一つでもチェックが外れている時（元の文章に戻す）
