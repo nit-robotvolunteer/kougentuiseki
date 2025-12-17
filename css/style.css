@@ -1,0 +1,368 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    touch-action: manipulation;
+}
+
+header {
+    background-color: #4c7cb2;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: fixed; 
+    top: 0;
+    width:100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header-hidden {
+    transform: translateY(-100%); /* 画面上部へ完全に移動させて非表示 */
+}
+
+.header-visible {
+    transform: translateY(0); /* 画面上部に表示 */
+}
+
+header h1 {
+    margin: auto;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+}
+
+header h1,
+header p {
+    font-family: "Zen Maru Gothic", sans-serif;
+    font-weight: 400;
+}
+
+.header-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+    justify-self: center;
+    padding-bottom: 8px !important;
+    padding: 0 10px;
+}
+@media screen and (min-width: 1024px) {
+    .header-content {
+        max-width: 700px;
+        justify-content: center;
+    }
+    header h1 {
+        margin:0;
+    }
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.9em;
+    white-space: nowrap; /* ボタン内のテキストが折り返されないように */
+}
+
+header nav a:hover {
+    background-color: #fff;
+    color: #4c7cb2;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto; /* margin-top を 0 に */
+    padding: 18px 10px;
+    padding-top: 20px; /* ヘッダー分のスペースを確保 */
+    padding-bottom: 5rem;
+    transition: padding-top 0.3s ease-in-out;
+}
+@media screen and (min-width: 1024px) {
+    .container {
+       max-width: 700px;
+    }
+   }
+
+.container.top {
+    padding-top: 8rem;
+}
+.container.no-top {
+    transition: none !important;
+}
+
+
+section {
+    border: 2px double;
+    margin-bottom: 1.5rem;
+}
+
+section h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #0e61c1;
+    color: #fff;
+    display: flex;
+    align-items: baseline;    
+}
+
+@media screen and (min-width: 768px) {
+    .br-mobile {
+       display: none;
+    }
+}
+
+/* 組み立てステップのスタイル */
+.step-item {
+    margin-bottom: 10px;
+    border: 1px solid #00000061;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.step-header {
+    background-color: #e9e9e9;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 0;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: baseline;
+}
+
+.step-header:hover {
+    background-color: #ddd;
+}
+
+/* クリックで開いた時のヘッダースタイル */
+.step-item.active .step-header {
+    background-color: #4c7cb2 !important;
+    color: #fff !important;
+}
+
+.step-item.active {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.35);
+}
+
+/* 動画・説明コンテンツ部分 */
+.step-content {
+    padding: 0 15px;
+    max-height: 0; /* 初期状態で非表示 */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+/* activeクラスが付いたときに動画を表示 */
+.step-item.active .step-content {
+    max-height: 1000px; 
+    padding: 15px;
+}
+
+.guide-text {
+    padding: 10px 0;
+    margin-top: 15px;
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+
+.assembly-steps h2,
+.step-header h3 {
+   font-family: "Mochiy Pop One", sans-serif;
+   font-weight: 400;
+}
+
+/* YouTube埋め込み動画のレスポンシブ対応 */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 のアスペクト比 (9/16 = 0.5625) */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.image-container {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px; 
+}
+
+#point3,
+#point6 {
+    height: 440px;
+    object-fit: contain;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+}
+
+#microrobot-hero {
+    border: none; /* sectionの二重線を非表示 */
+    margin-bottom: 2rem;
+}
+
+.hero-image-container {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+@media screen and (min-width: 1024px) {
+    .hero-image-container {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 10px;
+    }
+}
+
+.full-width-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+@media screen and (min-width: 1024px) {
+    .full-width-image {
+       width: 44%;
+    }
+}
+
+/* ロボット紹介エリアのスタイル */
+#robot-details,
+#demo-video {
+    border: 2px double #4c7cb2; 
+}
+
+#robot-details .step-item {
+    border: none; 
+    box-shadow: none;
+    margin: 0 10px;
+}
+
+.open-content {
+    max-height: none !important; /* JSによる max-height: 0; を上書き */
+}
+
+#demo-video .step-header {
+    background-color: #e9e9e9;
+    color: #333;
+}
+#demo-video {
+    background-color: #f4f4f9;
+    color: #fff;
+}
+
+#topGuide {
+    padding: 0;
+    margin-top: 0;
+    background: none
+}
+
+#completion-checklist { 
+    background-color: #fff; 
+}
+
+#completion-checklist h2 {
+    margin-top: 0;
+    margin-bottom: 0; /* checklist-contentとの間に隙間を作らない */
+    padding: 10px;
+    background: #0e61c1;
+    color: #fff;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    font-family: "Mochiy Pop One", sans-serif;
+    font-weight: 400;
+}
+
+.checklist-content ol {
+    padding-left: 20px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    list-style: none;
+}
+
+.checklist-content li {
+    margin-bottom: 12px;
+}
+
+.checklist-content p {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    padding: 15px;
+    margin: 0;
+    font-size: 1.1em;
+    color: #0e61c1;
+    border-top: 1px solid #ddd;
+}
+
+.checklist-content li {
+    margin-bottom: 15px; 
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+    padding: 5px;
+}
+
+.check-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    flex-shrink: 0; /* チェックボックスが潰れないように固定 */
+}
+
+/* チェックしたときにテキストを少し薄くして達成感を出す */
+.check-item input:checked + span {
+    color: #888;
+    text-decoration: line-through;
+}
+
+.completed-text {
+    color: #ff4500 !important; 
+    font-weight: bold;
+    font-size: 1.3em !important;
+    text-align: center;
+    animation: celebrate 0.5s ease infinite alternate; 
+}
+
+@keyframes celebrate {
+    from { transform: scale(1); }
+    to { transform: scale(1.04); }
+}
