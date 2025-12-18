@@ -1,5 +1,8 @@
 /* quiz.css */
-.quiz-body { background-color: #f0f8ff; }
+.quiz-body { 
+    background-color: #f0f8ff; 
+    user-select: none;
+}
 
 /* ヘッダーを固定 */
 .quiz-header {
@@ -11,7 +14,7 @@
 #quiz-app {
     background: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 17px;
     box-shadow: 0 8px 0 #ccd;
     min-height: 400px;
 }
@@ -23,6 +26,7 @@
     font-family: "Mochiy Pop One", sans-serif;
     font-weight: 400
  }
+
 .quiz-intro ul {
     padding-left: 20px;
     font-family: 'Zen Maru Gothic', sans-serif;
@@ -81,6 +85,16 @@
 .nav-dot.answered { 
   background: #e3f2fd; 
   border-color: #4c7cb2; 
+}
+
+.quizu-number {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background: #3F51B5;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #fff;
 }
 
 .quiz-tittle {
