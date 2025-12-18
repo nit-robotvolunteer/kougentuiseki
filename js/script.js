@@ -30,13 +30,9 @@ const throttle = (func, wait) => {
     };
 };
 
-// script.js (修正後)
-
-// ... 省略 ... (throttle関数まで修正なし)
-
 document.addEventListener('DOMContentLoaded', () => {
     // ==================================================
-    // ① スクロールによるヘッダー表示/非表示機能の追加 (修正あり)
+    // ① スクロールによるヘッダー表示/非表示機能の追加
     // ==================================================
     const header = document.querySelector('header');
     const containers = document.querySelectorAll('.container');
@@ -61,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    // ★ 修正/追加箇所: ページロード時に即座に.topを付与し、transitionを無効化
+    // ページロード時に即座に.topを付与し、transitionを無効化
     containers.forEach(container => {
         container.classList.add('no-top'); // 一時的にtransitionを無効化
     });
@@ -111,18 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // .container.topの制御を、ヘッダーの表示状態に連動させる（isFirstScrollのチェックは不要に）
+        // .container.topの制御を、ヘッダーの表示状態に連動させる
         // ヘッダーの表示状態に応じて .top クラスを操作
         updateContainerTopClass(header.classList.contains('header-visible'));
 
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // スクロール位置を更新
     };
 
-    // スクロールイベントにthrottleを適用 (例: 100msに1回だけ処理を実行)
+    // スクロールイベントにthrottleを適用 (100msに1回だけ処理を実行)
     window.addEventListener('scroll', throttle(handleScroll, 100));
 
     // ==================================================
-    // ② アコーディオン開閉と自動スクロール機能（修正）
+    // ② アコーディオン開閉と自動スクロール機能
     // ==================================================
     // すべての手順ヘッダー要素を取得
     const stepHeaders = document.querySelectorAll('.step-header');
