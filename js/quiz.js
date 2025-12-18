@@ -156,9 +156,9 @@ function showResult() {
             ${shuffledQuestions.map((q, i) => `
                 <div class="explanation-card">
                     <strong>問${i+1}: ${userAnswers[i] === q.correct ? '✅正解' : '❌不正解'}</strong><br>
-                    あなたの回答：<span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span><br>
-                    正解：<strong>${q.a[q.correct]}</strong><br>
-                    解説：<small>${q.ex}</small>
+                    <span>あなたの回答：</span><span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span><br>
+                    <span>正解：</span><strong>${q.a[q.correct]}</strong><br>
+                    <span>解説：</span><small>${q.ex}</small>
                 </div>
             `).join('')}
             <button class="option-btn" id="restart-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
