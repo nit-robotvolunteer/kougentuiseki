@@ -11,6 +11,10 @@
     transform: none !important; /* index.htmlの消える機能を無効化 */
 }
 
+.container.quiz{
+    padding-bottom: 0;
+}
+
 #quiz-app {
     background: white;
     border-radius: 20px;
