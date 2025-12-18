@@ -158,7 +158,7 @@ function showResult() {
                     <strong>問${i+1}: ${userAnswers[i] === q.correct ? '✅正解' : '❌不正解'}</strong><br>
                     <span>あなたの回答：</span><span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span><br>
                     <span>正解：</span><strong>${q.a[q.correct]}</strong><br>
-                    <span>解説：</span><small>${q.ex}</small>
+                    <small>解説：</small><small>${q.ex}</small>
                 </div>
             `).join('')}
             <button class="option-btn" id="restart-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
