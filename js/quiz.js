@@ -53,9 +53,8 @@ function renderIntro() {
         <div class="quiz-intro">
             <h2>ロボットクイズに挑戦！</h2>
             <ul>
-                <li>制限時間：15分</li>
-                <li>全部で20問</li>
-                <li>ヒントは説明書</li>
+                <li>制限時間は15分です。</li>
+                <li>問題は全部で20問です。</li>
             </ul>
             <button class="option-btn" style="text-align:center; background:#4c7cb2; color:white;" onclick="startQuiz()">クイズをはじめる！</button>
         </div>
