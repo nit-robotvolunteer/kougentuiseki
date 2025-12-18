@@ -79,7 +79,7 @@ function renderQuestion() {
         <div class="timer-bar"><div id="progress"></div></div>
         <div class="question-nav">${navDots}</div>
         <span class="genre-badge">ジャンル ${q.genre}</span>
-        <span class="quiz-number">問${currentIndex + 1}.</span>
+        <span class="quiz-number">問${currentIndex + 1}</span>
         <h3 class="quiz-tittle">${q.q}</h3>
         <div id="options">
             ${q.a.map((opt, i) => `
