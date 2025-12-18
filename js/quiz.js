@@ -56,15 +56,17 @@ function renderIntro() {
                 <li>制限時間は全体で15分です。</li>
                 <li>クイズの問題は全部で20問です。</li>
                 <li>答えを3択から選択してください。</li>
-                <li>5つのジャンルから出題されます</li>
             </ul>
     
             <ul>
-                <li>ジャンルA：ロボットの仕組み・特徴</li>
-                <li>ジャンルB：工作（はんだ付け）の基本</li>
-                <li>ジャンルC：部品（パーツ）について</li>
-                <li>ジャンルD：車体・組み立ての順序</li>
-                <li>ジャンルE：安全と組み立て</li>
+                <li>5つのジャンルから出題されます</li>
+                <ul style="padding-left: 7px;">
+                   <li>ジャンルA：ロボットの仕組み・特徴</li>
+                   <li>ジャンルB：工作（はんだ付け）の基本</li>
+                   <li>ジャンルC：部品（パーツ）について</li>
+                   <li>ジャンルD：車体・組み立ての順序</li>
+                   <li>ジャンルE：安全と組み立て</li>
+                </ul>
             </ul>
             <button class="option-btn" style="text-align:center; background:#4c7cb2; color:white;" onclick="startQuiz()">クイズをはじめる！</button>
         </div>
