@@ -311,7 +311,7 @@ footer {
 }
 
 .checklist-content ol {
-    padding-left: 20px;
+    padding-left: 0px;
     font-family: 'Zen Maru Gothic', sans-serif;
     list-style: none;
 }
