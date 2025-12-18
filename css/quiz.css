@@ -1,4 +1,8 @@
 /* quiz.css */
+* {
+    touch-action: manipulation;
+}
+
 .quiz-body { 
     background-color: #f0f8ff; 
     user-select: none;
