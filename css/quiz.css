@@ -1,11 +1,12 @@
 /* quiz.css */
 * {
     touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .quiz-body { 
     background-color: #f0f8ff; 
-    user-select: none;
 }
 
 /* ヘッダーを固定 */
