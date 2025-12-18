@@ -149,7 +149,7 @@ function showResult() {
                     解説：<small>${q.ex}</small>
                 </div>
             `).join('')}
-            <button class="option-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
+            <button class="option-btn" id="restart-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
         </div>
     `;
 }
