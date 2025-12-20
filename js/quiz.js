@@ -204,9 +204,9 @@ function showResult() {
             ${shuffledQuestions.map((q, i) => `
                 <div class="explanation-card">
                     <strong>問${i+1}: ${userAnswers[i] === q.correct ? '✅正解' : '❌不正解'}</strong><br>
-                    <span>あなたの回答：</span><span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span><br>
-                    <span>正解：</span><strong>${q.a[q.correct]}</strong><br>
-                    <small>解説：</small><small>${q.ex}</small>
+                    <label class="score-explanation"><span>あなたの回答：</span><span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span><br></label>
+                    <label class="score-explanation"><span>正解：</span><strong>${q.a[q.correct]}</strong></label><br>
+                    <label class="score-explanation"><small>解説：</small><small>${q.ex}</small></label>
                 </div>
             `).join('')}
             <button class="option-btn" id="restart-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
@@ -262,7 +262,7 @@ function openCertModal() {
 
     // 入力制限バリデーション
     nameInput.addEventListener('input', (e) => {
-        // 拗音、促音、濁音、半濁音の除外
+        // 拗音、促音、半濁音の除外
         const forbidden = /[ぁぃぅぇぉっァィゥェォッぱぴぷぺぽパピプペポ]/g;
         e.target.value = e.target.value.replace(forbidden, '');
         updateCanvas();
