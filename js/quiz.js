@@ -242,7 +242,7 @@ function openCertModal() {
     const ctx = canvas.getContext('2d');
     const bgImg = new Image();
     bgImg.crossOrigin = "anonymous";
-    bgImg.src = "/kougentuiseki/goukakusyo/goukakusyo1.png"; // 同階層にある画像
+    bgImg.src = "/kougentuiseki/image/goukakusyo/goukakusyo1.png"; // 同階層にある画像
 
     // 描画更新処理
     const updateCanvas = () => {
