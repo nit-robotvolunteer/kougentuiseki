@@ -229,8 +229,8 @@ function openCertModal() {
                     <input type="text" id="cert-user-name" maxlength="6" placeholder="名前をいれてね" 
                         style="font-size:18px; padding:10px; width:60%; border:2px solid #4c7cb2; border-radius:8px; text-align:center;">
                     <select id="cert-suffix" style="font-size:18px; padding:10px; border:2px solid #4c7cb2; border-radius:8px; background:white;">
-                        <option value="kun">くん</option>
                         <option value="san">さん</option>
+                        <option value="kun">くん</option>
                     </select>
                 </div>
 
