@@ -216,7 +216,6 @@ function showResult() {
 }
 
 // --- 合格証生成ロジック ---
-// モーダルを開く
 function openCertModal() {
     if (document.getElementById('cert-modal')) return;
 
@@ -225,12 +224,24 @@ function openCertModal() {
             <div style="background:white; padding:20px; border-radius:15px; width:90%; max-width:640px; text-align:center; position:relative;" onclick="event.stopPropagation()">
                 <h2 style="margin-top:0; color:#4c7cb2;">おめでとう！合格証だよ</h2>
                 <p style="font-size:14px;">名前を入力してね（6文字まで）</p>
-                <input type="text" id="cert-user-name" maxlength="6" placeholder="名前をいれてね" 
-                    style="font-size:18px; padding:10px; width:80%; border:2px solid #4c7cb2; border-radius:8px; margin-bottom:15px; text-align:center;">
+                
+                <div style="margin-bottom:15px; display:flex; justify-content:center; gap:5px;">
+                    <input type="text" id="cert-user-name" maxlength="6" placeholder="名前をいれてね" 
+                        style="font-size:18px; padding:10px; width:60%; border:2px solid #4c7cb2; border-radius:8px; text-align:center;">
+                    <select id="cert-suffix" style="font-size:18px; padding:10px; border:2px solid #4c7cb2; border-radius:8px; background:white;">
+                        <option value="kun">くん</option>
+                        <option value="san">さん</option>
+                    </select>
+                </div>
+
                 <div id="canvas-wrapper" style="width:100%; overflow:hidden; border:1px solid #ccc; margin-bottom:15px;">
                     <canvas id="cert-canvas" width="600" height="400" style="width:100%; height:auto; display:block;"></canvas>
                 </div>
-                <button onclick="downloadCert()" style="background:#4CAF50; color:white; border:none; padding:12px 24px; border-radius:8px; font-size:16px; cursor:pointer; font-weight:bold;">画像を保存する</button>
+                
+                <button id="cert-save-btn" onclick="downloadCert()" disabled 
+                    style="background:#ccc; color:white; border:none; padding:12px 24px; border-radius:8px; font-size:16px; cursor:not-allowed; font-weight:bold; transition:0.3s;">
+                    画像を保存する
+                </button>
                 <p style="font-size:12px; color:#666; margin-top:10px;">※背景をタッチすると閉じます</p>
             </div>
         </div>
@@ -238,35 +249,58 @@ function openCertModal() {
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 
     const nameInput = document.getElementById('cert-user-name');
+    const suffixSelect = document.getElementById('cert-suffix');
+    const saveBtn = document.getElementById('cert-save-btn');
     const canvas = document.getElementById('cert-canvas');
     const ctx = canvas.getContext('2d');
     const bgImg = new Image();
     bgImg.crossOrigin = "anonymous";
-    bgImg.src = "/kougentuiseki/image/goukakusyo/goukakusyo1.png"; // 合格証背景画像1
 
     // 描画更新処理
     const updateCanvas = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(bgImg, 0, 0, 600, 400);
+        const suffix = suffixSelect.value;
+        // 選択された敬称に合わせて画像を切り替え
+        bgImg.src = `/kougentuiseki/image/goukakusyo/goukakusyo_${suffix}.png`;
         
-        // 名前の描画
-        const name = nameInput.value;
-        ctx.font = "bold 24px 'Zen Maru Gothic', sans-serif";
-        ctx.fillStyle = "#1a2a44";
-        ctx.textAlign = "right";
-        // 「さん」の左側に配置（画像内の位置調整: xとy）
-        ctx.fillText(name, 350, 130); 
+        bgImg.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(bgImg, 0, 0, 600, 400);
+            
+            const name = nameInput.value;
+            ctx.font = "bold 24px 'Zen Maru Gothic', sans-serif";
+            ctx.fillStyle = "#1a2a44";
+            ctx.textAlign = "right";
+            // 名前が入力されている時のみ描画
+            if(name) {
+                ctx.fillText(name, 350, 130); 
+            }
+        };
     };
 
-    bgImg.onload = updateCanvas;
+    // 初回描画
+    updateCanvas();
 
-    // 入力制限バリデーション
-    nameInput.addEventListener('input', (e) => {
-        // 拗音、促音、半濁音の除外
+    // 入力・選択イベント
+    const validateInput = (e) => {
+        // 1. 禁止文字の除外
         const forbidden = /[ぁぃぅぇぉっァィゥェォッぱぴぷぺぽパピプペポ]/g;
-        e.target.value = e.target.value.replace(forbidden, '');
+        nameInput.value = nameInput.value.replace(forbidden, '');
+
+        // 2. ボタンの有効化/無効化（1文字以上で有効）
+        if (nameInput.value.length > 0) {
+            saveBtn.disabled = false;
+            saveBtn.style.background = "#4CAF50";
+            saveBtn.style.cursor = "pointer";
+        } else {
+            saveBtn.disabled = true;
+            saveBtn.style.background = "#ccc";
+            saveBtn.style.cursor = "not-allowed";
+        }
         updateCanvas();
-    });
+    };
+
+    nameInput.addEventListener('input', validateInput);
+    suffixSelect.addEventListener('change', updateCanvas);
 }
 
 // モーダルを閉じる
@@ -284,7 +318,5 @@ function downloadCert() {
     link.href = canvas.toDataURL('image/png');
     link.click();
 }
-
-initQuiz();
 
 initQuiz();
