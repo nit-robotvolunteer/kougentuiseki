@@ -224,8 +224,8 @@ function openCertModal() {
         <div id="cert-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:10000;" onclick="closeCertModal()">
             <div style="background:white; padding:20px; border-radius:15px; width:90%; max-width:640px; text-align:center; position:relative;" onclick="event.stopPropagation()">
                 <h2 style="margin-top:0; color:#4c7cb2;">おめでとう！合格証だよ</h2>
-                <p style="font-size:14px;">なまえを入力してね（6文字まで）</p>
-                <input type="text" id="cert-user-name" maxlength="6" placeholder="なまえをいれてね" 
+                <p style="font-size:14px;">名前を入力してね（6文字まで）</p>
+                <input type="text" id="cert-user-name" maxlength="6" placeholder="名前をいれてね" 
                     style="font-size:18px; padding:10px; width:80%; border:2px solid #4c7cb2; border-radius:8px; margin-bottom:15px; text-align:center;">
                 <div id="canvas-wrapper" style="width:100%; overflow:hidden; border:1px solid #ccc; margin-bottom:15px;">
                     <canvas id="cert-canvas" width="600" height="400" style="width:100%; height:auto; display:block;"></canvas>
