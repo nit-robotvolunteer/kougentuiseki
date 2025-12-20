@@ -333,8 +333,7 @@ footer {
     margin-bottom: 15px; 
 }
 
-.check-item,
-.score-explanation {
+.check-item {
     display: flex;
     align-items: center;
     cursor: pointer;
