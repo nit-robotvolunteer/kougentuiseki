@@ -254,8 +254,8 @@ function openCertModal() {
         ctx.font = "bold 24px 'Zen Maru Gothic', sans-serif";
         ctx.fillStyle = "#1a2a44";
         ctx.textAlign = "right";
-        // 「さん」の左側に配置（画像内の位置調整: x=455付近）
-        ctx.fillText(name, 400, 80); 
+        // 「さん」の左側に配置（画像内の位置調整: xとy）
+        ctx.fillText(name, 500, 0); 
     };
 
     bgImg.onload = updateCanvas;
