@@ -210,8 +210,81 @@ function showResult() {
                 </div>
             `).join('')}
             <button class="option-btn" id="restart-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
+            ${score === 20 ? `<button class="option-btn" id="cert-open-btn" onclick="openCertModal()" style="text-align:center; background:#ffcc00; border-color:#ff9900; font-weight:bold;">合格証を表示する</button>` : ''}
         </div>
     `;
 }
+
+// --- 合格証生成ロジック ---
+// モーダルを開く
+function openCertModal() {
+    if (document.getElementById('cert-modal')) return;
+
+    const modalHtml = `
+        <div id="cert-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:10000;" onclick="closeCertModal()">
+            <div style="background:white; padding:20px; border-radius:15px; width:90%; max-width:640px; text-align:center; position:relative;" onclick="event.stopPropagation()">
+                <h2 style="margin-top:0; color:#4c7cb2;">おめでとう！合格証だよ</h2>
+                <p style="font-size:14px;">なまえを入力してね（6文字まで）</p>
+                <input type="text" id="cert-user-name" maxlength="6" placeholder="なまえをいれてね" 
+                    style="font-size:18px; padding:10px; width:80%; border:2px solid #4c7cb2; border-radius:8px; margin-bottom:15px; text-align:center;">
+                <div id="canvas-wrapper" style="width:100%; overflow:hidden; border:1px solid #ccc; margin-bottom:15px;">
+                    <canvas id="cert-canvas" width="600" height="400" style="width:100%; height:auto; display:block;"></canvas>
+                </div>
+                <button onclick="downloadCert()" style="background:#4CAF50; color:white; border:none; padding:12px 24px; border-radius:8px; font-size:16px; cursor:pointer; font-weight:bold;">画像を保存する</button>
+                <p style="font-size:12px; color:#666; margin-top:10px;">※背景をタッチすると閉じます</p>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    const nameInput = document.getElementById('cert-user-name');
+    const canvas = document.getElementById('cert-canvas');
+    const ctx = canvas.getContext('2d');
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+    bgImg.src = "クイズ合格証_背景.png"; // 同階層にある画像
+
+    // 描画更新処理
+    const updateCanvas = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(bgImg, 0, 0, 600, 400);
+        
+        // 名前の描画
+        const name = nameInput.value;
+        ctx.font = "bold 24px 'Zen Maru Gothic', sans-serif";
+        ctx.fillStyle = "#1a2a44";
+        ctx.textAlign = "right";
+        // 「さん」の左側に配置（画像内の位置調整: x=455付近）
+        ctx.fillText(name, 455, 112); 
+    };
+
+    bgImg.onload = updateCanvas;
+
+    // 入力制限バリデーション
+    nameInput.addEventListener('input', (e) => {
+        // 拗音、促音、濁音、半濁音の除外
+        const forbidden = /[ぁぃぅぇぉっァィゥェォッがぎぐげござじずぜぞぢづでどばびぶべぼぱぴぷぺぽガギグゲゴザジズゼゾヂヅデドバビブベボパピプペポ]/g;
+        e.target.value = e.target.value.replace(forbidden, '');
+        updateCanvas();
+    });
+}
+
+// モーダルを閉じる
+function closeCertModal() {
+    const modal = document.getElementById('cert-modal');
+    if (modal) modal.remove();
+}
+
+// 画像保存（ダウンロード）
+function downloadCert() {
+    const canvas = document.getElementById('cert-canvas');
+    const name = document.getElementById('cert-user-name').value || "マイスター";
+    const link = document.createElement('a');
+    link.download = `${name}_合格証.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
+initQuiz();
 
 initQuiz();
