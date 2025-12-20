@@ -255,7 +255,7 @@ function openCertModal() {
         ctx.fillStyle = "#1a2a44";
         ctx.textAlign = "right";
         // 「さん」の左側に配置（画像内の位置調整: xとy）
-        ctx.fillText(name, 350, 125); 
+        ctx.fillText(name, 370, 125); 
     };
 
     bgImg.onload = updateCanvas;
@@ -263,7 +263,7 @@ function openCertModal() {
     // 入力制限バリデーション
     nameInput.addEventListener('input', (e) => {
         // 拗音、促音、濁音、半濁音の除外
-        const forbidden = /[ぁぃぅぇぉっァィゥェォッがぎぐげござじずぜぞぢづでどばびぶべぼぱぴぷぺぽガギグゲゴザジズゼゾヂヅデドバビブベボパピプペポ]/g;
+        const forbidden = /[ぁぃぅぇぉっァィゥェォッぱぴぷぺぽパピプペポ]/g;
         e.target.value = e.target.value.replace(forbidden, '');
         updateCanvas();
     });
