@@ -255,7 +255,7 @@ function openCertModal() {
         ctx.fillStyle = "#1a2a44";
         ctx.textAlign = "right";
         // 「さん」の左側に配置（画像内の位置調整: x=455付近）
-        ctx.fillText(name, 300, 100); 
+        ctx.fillText(name, 400, 80); 
     };
 
     bgImg.onload = updateCanvas;
