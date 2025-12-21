@@ -265,6 +265,13 @@ function openCertModal() {
         bgImg.onload = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(bgImg, 0, 0, 600, 400);
+
+            const now = new Date();
+            const dateString = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
+            ctx.font = "16px 'Zen Maru Gothic', sans-serif"; // 日付用のフォントサイズ
+            ctx.fillStyle = "#1a2a44";
+            ctx.textAlign = "center";
+            ctx.fillText(dateString, 300, 55); // タイトル上の位置に配置
             
             const name = nameInput.value;
             ctx.font = "bold 24px 'Zen Maru Gothic', sans-serif";
