@@ -327,14 +327,26 @@ function closeCertModal() {
     if (modal) modal.remove();
 }
 
-// 画像保存（ダウンロード）
+// 画像保存（ダウンロード・表示対応）
 function downloadCert() {
     const canvas = document.getElementById('cert-canvas');
     const name = document.getElementById('cert-user-name').value || "マイスター";
+    const dataUrl = canvas.toDataURL('image/png');
+
+    // 1. 通常のダウンロード処理（PCやAndroid用）
     const link = document.createElement('a');
     link.download = `${name}_合格証.png`;
-    link.href = canvas.toDataURL('image/png');
+    link.href = dataUrl;
     link.click();
-}
 
+    // 2. iOSの「表示」ボタン対策: 新しいウィンドウで画像を開く
+    // タイミングを少し遅らせることで、ダウンロード処理を優先しつつ表示もサポートする
+    setTimeout(() => {
+        const newWindow = window.open();
+        if (newWindow) {
+            newWindow.document.write(`<img src="${dataUrl}" style="width:100%;" alt="${name}_合格証">`);
+            newWindow.document.title = `${name}_合格証`;
+        }
+    }, 100);
+}
 initQuiz();
