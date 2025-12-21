@@ -234,10 +234,10 @@ function openCertModal() {
         <div id="cert-modal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:10000;" onclick="closeCertModal()">
             <div style="background:white; padding:20px; border-radius:15px; width:90%; max-width:640px; text-align:center; position:relative;" onclick="event.stopPropagation()">
                 <h2 style="margin-top:0; color:#4c7cb2;">おめでとう！合格証だよ</h2>
-                <p style="font-size:14px;">名前を入力してね（6文字まで）</p>
+                <p style="font-size:14px;">名前入りの合格証が作れるよ</p>
                 
                 <div style="margin-bottom:15px; display:flex; justify-content:center; gap:5px;">
-                    <input type="text" id="cert-user-name" maxlength="6" placeholder="名前をいれてね" 
+                    <input type="text" id="cert-user-name" maxlength="6" placeholder="ここに名前を入力（6文字まで）" 
                         style="font-size:18px; padding:10px; width:60%; border:2px solid #4c7cb2; border-radius:8px; text-align:center;">
                     <select id="cert-suffix" style="font-size:18px; padding:10px; border:2px solid #4c7cb2; border-radius:8px; background:white;">
                         <option value="san">さん</option>
