@@ -63,9 +63,12 @@ const quizData = [
 ];
 
 // 離脱防止アラート
-window.onbeforeunload = function(e) {
-    return "ページを離れると今まで答えたクイズがリセットされます。";
-};
+window.addEventListener('beforeunload', function (e) {
+    // イベントをキャンセルしてアラートを表示させる
+    e.preventDefault();
+    // Chrome/Firefox/Safari(iOS)共通で、標準メッセージを表示させるための1行
+    e.returnValue = ''; 
+});
 
 let shuffledQuestions = [];
 let userAnswers = {}; // 回答保持用
@@ -188,8 +191,16 @@ function startTimer() {
 }
 
 function showResult() {
+    // 未回答があるかチェック（回答数が全問題数より少なければアラート）
+    if (Object.keys(userAnswers).length < shuffledQuestions.length) {
+        const proceed = confirm("未回答の問題があります。このまま結果を確認しますか？");
+        if (!proceed) return; // 「キャンセル」を押したらここで処理を終了する
+    }
+
     clearInterval(timerInterval);
-    window.onbeforeunload = null; // アラート解除
+    window.removeEventListener('beforeunload', arguments.callee);
+    window.onbeforeunload = null; 
+
     let score = 0;
     shuffledQuestions.forEach((q, i) => {
         if(userAnswers[i] === q.correct) score++;
