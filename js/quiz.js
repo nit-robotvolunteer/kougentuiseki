@@ -279,7 +279,7 @@ function openCertModal() {
 
             const now = new Date();
             const dateString = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`;
-            ctx.font = "18px 'Zen Maru Gothic', sans-serif"; // 日付用のフォントサイズ
+            ctx.font = "bold 18px 'Zen Maru Gothic', sans-serif"; // 日付用のフォントサイズ
             ctx.fillStyle = "#1a2a44";
             ctx.textAlign = "center";
             ctx.fillText(dateString, 300, 300); // タイトル上の位置に配置
