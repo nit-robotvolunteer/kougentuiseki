@@ -271,7 +271,7 @@ function openCertModal() {
             ctx.font = "16px 'Zen Maru Gothic', sans-serif"; // 日付用のフォントサイズ
             ctx.fillStyle = "#1a2a44";
             ctx.textAlign = "center";
-            ctx.fillText(dateString, 300, 55); // タイトル上の位置に配置
+            ctx.fillText(dateString, 300, 350); // タイトル上の位置に配置
             
             const name = nameInput.value;
             ctx.font = "bold 24px 'Zen Maru Gothic', sans-serif";
