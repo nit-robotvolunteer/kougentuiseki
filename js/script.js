@@ -164,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
 
     // ==================================================
     // ③ チェックリストの動的メッセージ切り替え
@@ -191,3 +190,22 @@ document.addEventListener('DOMContentLoaded', () => {
     checkboxes.forEach(cb => {
         cb.addEventListener('change', updateMessage);
     });
+
+    // ==================================================
+    // ④ ページトップへ戻るボタンの制御
+    // ==================================================
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', throttle(() => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }, 100));
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+});
