@@ -192,10 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==================================================
-    // ④ ページトップへ戻るボタンの制御
+    // ④ ページトップへ戻るボタンの生成と制御
     // ==================================================
+    // 1. ボタンをHTMLとして生成し、bodyの最後に追加
+    document.body.insertAdjacentHTML('beforeend', `
+        <button id="back-to-top" class="back-to-top" aria-label="ページトップへ戻る">↑</button>
+    `);
+
+    // 2. 追加した要素を取得（ここなら必ず存在する）
     const backToTopBtn = document.getElementById('back-to-top');
 
+    // 以降の処理は変更なし
     window.addEventListener('scroll', throttle(() => {
         if (window.scrollY > 300) {
             backToTopBtn.classList.add('show');
