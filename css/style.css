@@ -367,12 +367,10 @@ footer {
     to { transform: scale(1.04); }
 }
 
-/* 修正箇所: ページ全体のスクロールをなめらかにする (既存のbody付近に追記でもOK) */
 html {
     scroll-behavior: smooth;
 }
 
-/* 追加箇所: ボタンのスタイル */
 .back-to-top {
     position: fixed;
     bottom: 20px;
