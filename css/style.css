@@ -366,3 +366,41 @@ footer {
     from { transform: scale(1); }
     to { transform: scale(1.04); }
 }
+
+/* 修正箇所: ページ全体のスクロールをなめらかにする (既存のbody付近に追記でもOK) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 追加箇所: ボタンのスタイル */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #4c7cb2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    opacity: 0; /* 最初は隠す */
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: #0e61c1;
+    transform: translateY(-5px);
+}
