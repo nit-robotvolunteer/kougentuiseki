@@ -314,13 +314,15 @@ footer {
     margin: 0;
     font-size: 1.1em;
     color: #0e61c1;
-    border-top: 1px solid #ddd;
 }
 
 .checklist-content li {
     margin-bottom: 15px; 
 }
 
+.checklist-message {
+    border-top: 1px solid #ddd;
+}
 .check-item {
     display: flex;
     align-items: center;
