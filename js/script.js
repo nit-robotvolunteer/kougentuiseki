@@ -31,91 +31,23 @@ const throttle = (func, wait) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ==================================================
-    // ① スクロールによるヘッダー表示/非表示機能の追加
-    // ==================================================
-    const header = document.querySelector('header');
-    const containers = document.querySelectorAll('.container');
+    // ==================================================
+    // ① ヘッダー固定表示の設定（旧：スクロールによる表示/非表示）
+    // ==================================================
+    const header = document.querySelector('header');
+    const containers = document.querySelectorAll('.container');
 
-    let lastScrollTop = 0; // 以前のスクロール位置を保持
-    const scrollThreshold = 50; // スクロール検知のしきい値
-    let isHeaderHidden = false;
-    header.classList.add('header-visible'); // 初期状態は表示
+    // 既存の自動スクロール機能との互換性のために変数だけ残す
+    let isHeaderHidden = false; 
+    
+    // 初期状態のクラス設定
+    header.classList.add('header-visible');
+    header.classList.remove('header-hidden');
 
-    let isFirstScroll = true;
-
-    // .topクラスを制御する関数をシンプルに修正
-    const updateContainerTopClass = (isVisible) => {
-        containers.forEach(container => {
-            // ヘッダーが表示されている場合、.topを付与してスペースを空ける
-            if (isVisible) {
-                container.classList.add('top');
-            } else {
-                // ヘッダー非表示時は.topを削除
-                container.classList.remove('top');
-            }
-        });
-    };
-    
-    // ページロード時に即座に.topを付与し、transitionを無効化
-    containers.forEach(container => {
-        container.classList.add('no-top'); // 一時的にtransitionを無効化
-    });
-    // 初期状態では header-visible なので、.topを付与する
-    updateContainerTopClass(true);
-
-    // マイクロタスクキュー/次の描画フレームで transition を有効に戻す
-    setTimeout(() => {
-        containers.forEach(container => {
-            container.classList.remove('no-top'); // transitionを有効に戻す
-        });
-    }, 0); // 0msのsetTimeoutで即座に実行させ、初期描画後の処理に回す
-
-
-    // ヘッダー状態を更新するメインの関数
-    const handleScroll = () => {
-        const currentScroll = window.scrollY || document.documentElement.scrollTop;
-
-        // isFirstScrollフラグの操作ロジックは現状のままでOK
-        if (isFirstScroll && currentScroll > 0) {
-            isFirstScroll = false; // 一度でもスクロールされたらフラグをfalseに
-            // 初回付与した .top クラスは、次の updateContainerTopClass(false) または
-            // ヘッダー非表示ロジックで解除されるので、ここでは何もしなくてよい
-        }
-
-        // ヘッダーの表示/非表示ロジック (変更なし)
-        if (currentScroll <= 0) {
-            // ページトップの場合：必ず表示
-            if (isHeaderHidden) {
-                header.classList.remove('header-hidden');
-                header.classList.add('header-visible');
-                isHeaderHidden = false;
-            }
-        } else if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
-            // 下にスクロール（ページから離れる）：非表示
-            if (!isHeaderHidden) {
-                header.classList.add('header-hidden');
-                header.classList.remove('header-visible');
-                isHeaderHidden = true;
-            }
-        } else if (currentScroll < lastScrollTop) {
-            // 上にスクロール（ページ上部に戻る）：表示
-            if (isHeaderHidden) {
-                header.classList.remove('header-hidden');
-                header.classList.add('header-visible');
-                isHeaderHidden = false;
-            }
-        }
-
-        // .container.topの制御を、ヘッダーの表示状態に連動させる
-        // ヘッダーの表示状態に応じて .top クラスを操作
-        updateContainerTopClass(header.classList.contains('header-visible'));
-
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // スクロール位置を更新
-    };
-
-    // スクロールイベントにthrottleを適用 (100msに1回だけ処理を実行)
-    window.addEventListener('scroll', throttle(handleScroll, 100));
+    // コンテナの余白設定（常に表示されるため固定で付与）
+    containers.forEach(container => {
+        container.classList.add('top');
+    });
 
     // ==================================================
     // ② アコーディオン開閉と自動スクロール機能
