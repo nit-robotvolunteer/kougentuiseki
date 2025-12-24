@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateMessage = () => {
         // 全てのチェックボックスの数と、チェックされている数を比較
+        if (!statusMessage) return;
         const allChecked = Array.from(checkboxes).every(cb => cb.checked);
         
         if (allChecked) {
