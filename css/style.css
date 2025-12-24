@@ -9,6 +9,9 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #4c7cb2;
     color: #fff;
     padding: 10px 0;
@@ -43,8 +46,7 @@ header p {
     gap: 10px;
     align-items: center;
     justify-self: center;
-    padding-bottom: 8px !important;
-    padding: 0 10px;
+    padding: 10px;
 }
 @media screen and (min-width: 1024px) {
     .header-content {
