@@ -14,15 +14,10 @@ header {
     padding: 10px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: fixed; 
+    position: sticky; 
     top: 0;
     width:100%;
     z-index: 1000;
-    transition: transform 0.3s ease-in-out;
-}
-
-.header-hidden {
-    transform: translateY(-100%); /* 画面上部へ完全に移動させて非表示 */
 }
 
 .header-visible {
@@ -81,9 +76,8 @@ header nav a:hover {
     max-width: 900px;
     margin: 0 auto; /* margin-top を 0 に */
     padding: 18px 10px;
-    padding-top: 20px; /* ヘッダー分のスペースを確保 */
+    padding-top: 20px; 
     padding-bottom: 5rem;
-    transition: padding-top 0.3s ease-in-out;
 }
 @media screen and (min-width: 1024px) {
     .container {
@@ -92,7 +86,7 @@ header nav a:hover {
    }
 
 .container.top {
-    padding-top: 8rem;
+    padding-top: 5rem;
 }
 .container.no-top {
     transition: none !important;
