@@ -32,22 +32,14 @@ const throttle = (func, wait) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     // ==================================================
-    // ① ヘッダー固定表示の設定（旧：スクロールによる表示/非表示）
+    // ① ヘッダー固定表示の設定
     // ==================================================
     const header = document.querySelector('header');
     const containers = document.querySelectorAll('.container');
-
-    // 既存の自動スクロール機能との互換性のために変数だけ残す
-    let isHeaderHidden = false; 
     
     // 初期状態のクラス設定
     header.classList.add('header-visible');
     header.classList.remove('header-hidden');
-
-    // コンテナの余白設定（常に表示されるため固定で付与）
-    containers.forEach(container => {
-        container.classList.add('top');
-    });
 
     // ==================================================
     // ② アコーディオン開閉と自動スクロール機能
@@ -79,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (willBeActive && itemsInSameSection.length >= 1) {
                 // 少し遅延させて、CSSアニメーション（max-heightの変更）が終わってからスクロールする
                 setTimeout(() => {
-                    // ヘッダーが表示されている場合のみ高さを引く（ヘッダー非表示時は0として扱う）
-                    const headerVisibleHeight = isHeaderHidden ? 0 : document.querySelector('header').offsetHeight;
+                    // ヘッダーは常に固定表示されるため、その高さを取得
+                    const headerVisibleHeight = document.querySelector('header').offsetHeight;
                     const itemTop = currentItem.getBoundingClientRect().top + window.scrollY; // 要素の上端の絶対位置
                     
                     // 自動スクロール時に、非表示ヘッダーの影響を考慮し、
