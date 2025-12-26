@@ -393,6 +393,12 @@ footer {
     transform: translateY(-5px);
 }
 
+#robot-details h2,
+#demo-video h2,
+#robot-simulator h2 {
+    margin: 0
+}
+
 /* --- シミュレーターのスタイル --- */
 #robot-simulator {
     border: 2px double #4c7cb2;
@@ -782,10 +788,4 @@ footer {
 #sim-area.light-off {
     background-color: #1a1a1a !important; /* ライトOFF時は暗く */
     cursor: default;
-}
-
-.robot-details h2,
-.demo-video h2,
-.robot-simulator h2 {
-    margin: 0
 }
