@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetX = 50; //初期ターゲットをロボットと同じ位置に
     targetY = 50; //初期ターゲットをロボットと同じ位置に
     let isLightOn = false; // 初期状態はOFF
-    const detectionRange = 15; //ライトの反応距離
+    const detectionRange = 20; //ライトの反応距離
 
     // 初期状態の設定
     simLight.style.display = 'none';
