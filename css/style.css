@@ -783,3 +783,9 @@ footer {
     background-color: #1a1a1a !important; /* ライトOFF時は暗く */
     cursor: default;
 }
+
+.robot-details,
+.demo-video,
+.robot-simulator {
+    margin: 0
+}
