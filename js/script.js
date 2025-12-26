@@ -140,4 +140,111 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // ==================================================
+    // ⑤ 光源追跡ロボットシミュレーターの制御
+    // ==================================================
+    const simArea = document.getElementById('sim-area');
+    const simRobot = document.getElementById('sim-robot');
+    const simLight = document.getElementById('sim-light');
+    const lightBtn = document.getElementById('light-toggle-btn');
+
+    let robotX = 50; 
+    let robotY = 50;
+    let targetX = 50;
+    let targetY = 50;
+    let angle = 0;
+    targetX = 50; //初期ターゲットをロボットと同じ位置に
+    targetY = 50; //初期ターゲットをロボットと同じ位置に
+    let isLightOn = false; // 初期状態はOFF
+    const detectionRange = 15; //ライトの反応距離
+
+    // 初期状態の設定
+    simLight.style.display = 'none';
+    simArea.classList.add('light-off');
+
+    // ライトON/OFF切り替え
+    lightBtn.addEventListener('click', (e) => {
+        isLightOn = !isLightOn;
+        if (isLightOn) updateSimulator(e); // 点けた瞬間の位置を反映
+        simArea.classList.toggle('light-off', !isLightOn);
+        simLight.style.display = isLightOn ? 'block' : 'none';
+        lightBtn.textContent = isLightOn ? 'ライトを消す' : 'ライトをつける';
+        lightBtn.classList.toggle('light-btn-off', !isLightOn);
+    });
+
+    const updateSimulator = (e) => {
+        //ライトがOFFなら何もしない
+        if (!isLightOn) return;
+
+        const rect = simArea.getBoundingClientRect();
+        let clientX, clientY;
+        if (e.type.includes('touch')) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        } else {
+            clientX = e.clientX;
+            clientY = e.clientY;
+        }
+        targetX = ((clientX - rect.left) / rect.width) * 100;
+        targetY = ((clientY - rect.top) / rect.height) * 100;
+
+        simLight.style.left = `${targetX}%`;
+        simLight.style.top = `${targetY}%`;
+    };
+
+    const animateRobot = () => {
+        const dx = targetX - robotX;
+        const dy = targetY - robotY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+       
+        // ライトがON かつ 距離が近い時に判定
+        if (isLightOn && distance < detectionRange) { 
+            const targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+            let angleDiff = (targetAngle - angle + 540) % 360 - 180;
+
+            // 正面方向（左右30度以内）の時だけ前進する
+            if (Math.abs(angleDiff) < 30) {
+                // 次の移動予定位置を計算
+                let nextX = robotX + dx * 0.05;
+                let nextY = robotY + dy * 0.05;
+
+                // エリアの端（壁）の判定（%単位）
+                // ロボットの各パーツの端から中心までの距離（px）を個別に設定
+                const halfW = 22;  // 左右の幅の半分 (44px / 2)
+                const topH  = 22;  // 中心から先端(eye)までの距離 (目が出る分を考慮)
+                const bottomH = 28; // 中心から後ろ(tire)までの距離 (56px / 2)
+
+                // エリアの端（壁）の判定（%単位）を上下左右で個別に計算
+                const mLeft   = (halfW / simArea.clientWidth) * 230;
+                const mRight  = (halfW / simArea.clientWidth) * 230;
+                const mTop    = (topH  / simArea.clientHeight) * 230;
+                const mBottom = (bottomH / simArea.clientHeight) * 180;
+
+                // 壁に当たっていない場合のみ座標を更新する
+                if (nextX > mLeft && nextX < 100 - mRight) {
+                    robotX = nextX;
+                }
+                if (nextY > mTop && nextY < 100 - mBottom) {
+                    robotY = nextY;
+                }
+            }
+
+            // 向きは常にライトの方へ向けようとする
+            angle += angleDiff * 0.1;
+        }
+
+        simRobot.style.left = `${robotX}%`;
+        simRobot.style.top = `${robotY}%`;
+        simRobot.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+
+        requestAnimationFrame(animateRobot);
+    };
+
+    simArea.addEventListener('mousemove', updateSimulator);
+    simArea.addEventListener('touchmove', (e) => {
+        updateSimulator(e);
+        e.preventDefault();
+    }, { passive: false });
+
+    animateRobot();
 });
