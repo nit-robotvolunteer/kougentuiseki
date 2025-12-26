@@ -784,8 +784,8 @@ footer {
     cursor: default;
 }
 
-.robot-details,
-.demo-video,
-.robot-simulator {
+.robot-details h2,
+.demo-video h2,
+.robot-simulator h2 {
     margin: 0
 }
