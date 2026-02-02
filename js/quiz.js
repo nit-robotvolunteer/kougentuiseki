@@ -214,10 +214,22 @@ function showResult() {
             <h3>解説を読んでみよう</h3>
             ${shuffledQuestions.map((q, i) => `
                 <div class="explanation-card">
-                    <strong>問${i+1}: ${userAnswers[i] === q.correct ? '✅正解' : '❌不正解'}</strong><br>
-                    <label class="score-explanation"><span>あなたの回答：</span><span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span><br></label>
-                    <label class="score-explanation"><span>正解：</span><strong>${q.a[q.correct]}</strong></label><br>
-                    <label class="score-explanation"><small>解説：</small><small>${q.ex}</small></label>
+                    <strong>問${i+1}: ${userAnswers[i] === q.correct ? '✅正解' : '❌不正解'}</strong>
+                    <br>
+                    <label class="score-explanation">
+                     <span>あなたの回答：</span>
+                     <span class="user-ans">${userAnswers[i] !== undefined ? q.a[userAnswers[i]] : '未回答'}</span>
+                     <br>
+                    </label>
+                    <label class="score-explanation">
+                     <strong class="title>正解：</strong>
+                     <strong class="sentence>${q.a[q.correct]}</strong>
+                    </label>
+                    <br>
+                    <label class="score-explanation">
+                     <small class="title">解説：</small>
+                     <small class="sentence">${q.ex}</small>
+                    </label>
                 </div>
             `).join('')}
             <button class="option-btn" id="restart-btn" onclick="location.reload()" style="text-align:center;">もういちど挑戦する</button>
