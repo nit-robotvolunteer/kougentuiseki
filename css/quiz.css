@@ -201,6 +201,6 @@
     align-items: flex-start;
 }
 
-.score-explanation > .title {
+.score-explanation .title {
     flex-shrink: 0;
 }
