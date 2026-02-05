@@ -222,7 +222,7 @@ function showResult() {
                      <br>
                     </label>
                     <label class="score-explanation">
-                     <strong class="title>正解：</strong>
+                     <strong class="title">正解：</strong>
                      <strong class="sentence>${q.a[q.correct]}</strong>
                     </label>
                     <br>
