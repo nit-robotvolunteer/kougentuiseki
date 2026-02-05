@@ -9,11 +9,10 @@
     background-color: #f0f8ff; 
 }
 
-/* ヘッダーを固定 */
 .quiz-header {
     position: sticky !important;
     top: 0;
-    transform: none !important; /* index.htmlの消える機能を無効化 */
+    transform: none !important;
 }
 
 .container.quiz{
@@ -28,7 +27,6 @@
     min-height: 400px;
 }
 
-/* 小学生向けのワクワクするスタイル */
 .quiz-intro h2 { 
     color: #0e61c1; 
     text-align: center; 
