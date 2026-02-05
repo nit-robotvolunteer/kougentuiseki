@@ -225,7 +225,6 @@ function showResult() {
                      <strong class="title">正解：</strong>
                      <strong class="sentence">${q.a[q.correct]}</strong>
                     </label>
-                    <br>
                     <label class="score-explanation">
                      <small class="title">解説：</small>
                      <small class="sentence">${q.ex}</small>
