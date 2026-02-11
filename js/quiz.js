@@ -213,8 +213,8 @@ function showResult() {
             <div class="score-circle"><div>${score}/20</div><div style="font-size:0.4em">せいかい</div></div>
             <h3>解説を読んでみよう</h3>
             ${shuffledQuestions.map((q, i) => `
-                <div class="explanation-card">
-                    <strong>問${i+1}：${userAnswers[i] === q.correct ? '〇 正解' : '✕ 不正解'}</strong>
+                <div class="explanation-card" ${userAnswers[i] === q.correct ? 'is-correct' : 'is-wrong'}>
+                    <strong class="status-text">問${i+1}：${userAnswers[i] === q.correct ? '〇 正解' : '✕ 不正解'}</strong>
                     <br>
                     <label class="score-explanation">
                      <span>回答：</span>
